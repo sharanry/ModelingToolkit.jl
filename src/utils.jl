@@ -324,3 +324,8 @@ function collect_var!(states, parameters, var, iv)
     end
     return nothing
 end
+
+isIO(sym) = (hasmetadata(sym, Symbolics.option_to_metadata_type(Val(:input))) &&
+    getmetadata(sym, Symbolics.option_to_metadata_type(Val(:input)))) ||
+    (hasmetadata(sym, Symbolics.option_to_metadata_type(Val(:output))) &&
+    getmetadata(sym, Symbolics.option_to_metadata_type(Val(:output))))
